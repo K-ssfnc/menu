@@ -454,6 +454,13 @@
   .copyline .cl-l { background: linear-gradient(90deg, transparent, rgba(94, 84, 66, 0.5)); }
   .copyline .cl-r { background: linear-gradient(270deg, transparent, rgba(94, 84, 66, 0.5)); }
   @media (max-width: 700px) { .copyline { font-size: 10.5px; } .copyline .cl-line { display: none; } }
+  /* 7/13 대표님 "컴퓨터로 볼 때 너무 넓어져 디자인 망침" — 족자(두루마리) 상한: 넓은 화면에선 720px 기둥으로 고정.
+     draw()가 gate.clientWidth 기준이라 지붕·초롱이 자동으로 720 확정판(기와 20장·초롱 5개)으로 그려짐. 복구는 이 블록 삭제 */
+  @media (min-width: 721px) {
+    .gate { max-width: 720px; margin-left: auto; margin-right: auto; }
+    .gwae.bl { left: calc(50% - 346px); }
+    .gwae.br { right: calc(50% - 346px); }
+  }
   .home-wrap { display: none; } /* 홈페이지 게시 전 임시 숨김 (2026-07-13) — 홈페이지 공개 시 이 줄 삭제 후 href를 공개 주소로 교체 */
 </style>
 </head>

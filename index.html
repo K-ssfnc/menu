@@ -454,11 +454,11 @@
   .copyline .cl-l { background: linear-gradient(90deg, transparent, rgba(94, 84, 66, 0.5)); }
   .copyline .cl-r { background: linear-gradient(270deg, transparent, rgba(94, 84, 66, 0.5)); }
   @media (max-width: 700px) { .copyline { font-size: 10.5px; } .copyline .cl-line { display: none; } }
-  /* 7/13 대표님 최종 [7/13 최종] "큐알안내판은 8인치 제한, 핸드폰용이니까" — 768px(8인치) 상한, 그 이상(아이패드 포함)은 옆면 먹색.
+  /* 7/13 대표님 최종 [7/13 최종] "비율 유지될 크기로 더 줄이자" — 720px(확정 디자인 원판 폭: 기와 20장·초롱 5개) 상한, 그 이상(아이패드 포함)은 옆면 먹색.
      지붕·초롱·사괘·내용 전부 body를 따라 820 안에서 원래 비율로 그려짐. 복구는 이 블록 삭제 */
-  @media (min-width: 769px) {
+  @media (min-width: 721px) {
     html { background: #17120D; }
-    body { max-width: 768px; margin: 0 auto; box-shadow: 0 0 46px rgba(0, 0, 0, 0.55); }
+    body { max-width: 720px; margin: 0 auto; box-shadow: 0 0 46px rgba(0, 0, 0, 0.55); }
   }
   .home-wrap { display: none; } /* 홈페이지 게시 전 임시 숨김 (2026-07-13) — 홈페이지 공개 시 이 줄 삭제 후 href를 공개 주소로 교체 */
 </style>

@@ -3,6 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Eonyang Dak-Kalguksu menu guide for international guests — English, 中文, 日本語, Tiếng Việt, Melayu.">
+<link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAA7klEQVR4nGNgGGDASEjBMXP5/8h8q5MPCerBBpSkRcHm3Hv6GkU/E8MAAxZifU4ugPkcF2BiGGDASK7L0eOSkH6YevS0wMQw2NKAEgGfkwtwmcvEMFhC4OQib7ALIytPgfnnz+4F04bGziQZSGraYWIYYMCIK//HPPnGQE4uGHIhwEKuRvT8TG65wcQwVEtCUsGgDQEWYhXCygUYILV8wAWYGAZ7GjiP5nN0QCgkCNWaTAxDJRecJzMNDN0QoLQ8IOTzoRMCpIYEsT4fNCFAMgC1nGCtJ2x8UgETw1CpC04S8CVM3jxu6zBPAwxUBgBcU2cniF4k/AAAAABJRU5ErkJggg==">
 <title>Eonyang Chicken Kalguksu — Menu</title>
 <!-- 벽보용 서체 (대표메뉴 도장과 동일한 Gugi) -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -202,7 +204,7 @@
   /* 선택 표시는 유리 알약만으로 (전 탭이 먹색이라 색 구분 없음) */
   /* 얇아 보이는 탭 보정: vi는 Baloo 진짜 굵기 700, en은 미세 외곽선(가짜 굵힘 아님, 0.3px) */
   nav.langs button[data-lang="vi"] { font-weight: 700; }
-  nav.langs button[data-lang="en"] { -webkit-text-stroke: 0.3px currentColor; }
+  nav.langs button[data-lang="en"], nav.langs button[data-lang="ms"] { -webkit-text-stroke: 0.3px currentColor; } /* 라틴 활자(Gugi) 얇음 보정 — ms는 7/14 대표님 "연해 보인다" 지적으로 en과 동일 적용 */
   /* 유리 알약: 선택된 언어 뒤로 미끄러지는 글라스 */
   #lang-glass {
     position: absolute; z-index: 0;
@@ -460,7 +462,6 @@
     html { background: #17120D; }
     body { max-width: 720px; margin: 0 auto; box-shadow: 0 0 46px rgba(0, 0, 0, 0.55); }
   }
-  .home-wrap { display: none; } /* 홈페이지 게시 전 임시 숨김 (2026-07-13) — 홈페이지 공개 시 이 줄 삭제 후 href를 공개 주소로 교체 */
 </style>
 </head>
 <body>
@@ -578,7 +579,7 @@
 <!-- 홈페이지 안내 버튼 (언어 선택 위) -->
 <!-- ※ 게시할 때: 아래 href를 홈페이지 공개 주소로 교체할 것. 홈페이지가 아직 미게시면 이 버튼째 숨기거나 홈페이지를 먼저 게시해야 함 (안 그러면 손님에게 깨진 링크가 보임) -->
 <div class="home-wrap">
-  <a class="home-link" href="홈페이지.html">
+  <a class="home-link" href="https://xn--3e0b87h4yosldtfu21c.com/">
     <svg viewBox="-8 -8 16 16" width="15" height="15" aria-hidden="true"><circle r="7.5" fill="#4A63B8"/><path d="M0,-7.5 A7.5,7.5 0 0 1 0,7.5 A3.75,3.75 0 0 0 0,0 A3.75,3.75 0 0 1 0,-7.5 Z" fill="#C42F1D" transform="rotate(-56.31)"/></svg>
     <span id="home-link-text"></span>
   </a>
@@ -745,7 +746,7 @@ const MENU = [
         en: "Milky chicken soup simmered until deep and comforting, served with rice. Not spicy.",
         ja: "白濁するまで煮込んだ深い味わいの鶏スープ。ごはん付き。辛くありません。",
         zh: "熬至奶白的浓郁鸡汤，配米饭，不辣。",
-        ko: "뽀얗게 우려낸 진한 닭곰탕과 공기밥.", vi: "Canh gà hầm trắng sữa, đậm đà ấm bụng, kèm cơm. Không cay.", ms: "Sup ayam pekat putih susu yang direneh lama, dihidang bersama nasi. Tidak pedas." } },
+        ko: "뽀얗게 우려낸 진한 닭곰탕과 공깃밥.", vi: "Canh gà hầm trắng sữa, đậm đà ấm bụng, kèm cơm. Không cay.", ms: "Sup ayam pekat putih susu yang direneh lama, dihidang bersama nasi. Tidak pedas." } },
     { kr: "닭죽", pron: "dahk-jook", img: "juk", price: 9000, local: true, spice: 0,
       name: { en: "Chicken Porridge", ja: "鶏粥", zh: "鸡肉粥", ko: "닭죽", vi: "Cháo gà", ms: "Bubur Ayam" },
       desc: {
@@ -818,7 +819,8 @@ const TIP_DOT = '<svg class="dot" viewBox="-8 -8 16 16" aria-hidden="true"><circ
 const STORE_PRICES = {
   test: { "닭칼국수": 12000, "맥주": 6000 },   // 시험용 2호점
 };
-const storeTag = decodeURIComponent((location.hash || "").slice(1));
+let storeTag = "";
+try { storeTag = decodeURIComponent((location.hash || "").slice(1)); } catch (e) { storeTag = ""; } // 잘못된 %주소로 접속해도 메뉴판이 멈추지 않도록 방어 (7/19)
 const storeOverride = STORE_PRICES[storeTag];
 if (storeOverride) {
   MENU.forEach(sec => sec.items.forEach(it => {
@@ -912,21 +914,24 @@ if (!UI[initial]) {
   initial = nav.startsWith("ja") ? "ja"
     : nav.startsWith("zh") ? "zh"
     : nav.startsWith("vi") ? "vi"
+    : nav.startsWith("ms") ? "ms"
     : nav.startsWith("ko") ? "ko" : "en";
 }
 render(initial);
 </script>
 
 
-<div id="toTop" role="button" aria-label="Top">↑</div>
+<div id="toTop" role="button" tabindex="0" aria-label="Top">↑</div>
 <script>
   (function () {
     var t = document.getElementById('toTop');
     window.addEventListener('scroll', function () {
       t.classList.toggle('show', window.scrollY > 500);
     }, { passive: true });
-    t.addEventListener('click', function () {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+    function goTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
+    t.addEventListener('click', goTop);
+    t.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') { e.preventDefault(); goTop(); }
     });
   })();
 </script>
